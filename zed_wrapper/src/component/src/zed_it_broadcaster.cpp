@@ -1,16 +1,20 @@
 #include "zed_it_broadcaster.hpp"
+#include "rclcpp/node_options.hpp"
 #include <chrono>
 #include <thread>
 
 using namespace std::placeholders;
 
 namespace stereolabs {
-
     ZedItBroadcaster::ZedItBroadcaster(const std::string& node_name /*= "zed_it_broadcaster"*/,
-                                       const std::string& ros_namespace /*= "zed"*/,
-                                       const std::string& main_node,
-                                       bool intra_process_comms /*= true*/)
-        : Node(node_name, ros_namespace, intra_process_comms) {
+                                       const std::string& ros_namespace /*= "zed"*/
+                                       ) /*= "zed"*/
+    : Node(node_name, ros_namespace){
+    //ZedItBroadcaster::ZedItBroadcaster(const std::string& node_name /*= "zed_it_broadcaster"*/,
+    //                                   const std::string& ros_namespace /*= "zed"*/,
+    //                                   const std::string& main_node,
+    //                                   bool intra_process_comms /*= true*/)
+    //    : Node(node_name, ros_namespace, intra_process_comms) {
 
 #ifndef NDEBUG
         rcutils_ret_t res = rcutils_logging_set_logger_level(get_name(), RCUTILS_LOG_SEVERITY_DEBUG);
@@ -34,7 +38,7 @@ namespace stereolabs {
             topicPrefix += "/";
         }
 
-        mMainNode = main_node;
+        mMainNode = "zed";
 
         topicPrefix += mMainNode;
         topicPrefix += "/";
@@ -71,18 +75,22 @@ namespace stereolabs {
                                       std::bind(&ZedItBroadcaster::checkSubscribersCallback, this));
     }
 
-    ZedItBroadcaster::ZedItBroadcaster(
-        const std::string& node_name,
-        const std::string& ros_namespace,
-        const std::string& main_node,
-        rclcpp::Context::SharedPtr context,
-        const std::vector<std::string>& arguments,
-        const std::vector<rclcpp::Parameter>& initial_parameters,
-        bool use_global_arguments /*= true*/,
-        bool use_intra_process_comms /*= false*/,
-        bool start_parameter_services /*= true*/)
-        : Node(node_name, ros_namespace, context, arguments, initial_parameters,
-               use_global_arguments, use_intra_process_comms, start_parameter_services) {
+    ZedItBroadcaster::ZedItBroadcaster(const std::string& node_name /*= "zed_it_broadcaster"*/,
+                                       const std::string& ros_namespace,
+                                       const rclcpp::NodeOptions & options) /*= "zed"*/
+    : Node(node_name, ros_namespace, options) {
+    //ZedItBroadcaster::ZedItBroadcaster(
+    //    const std::string& node_name,
+    //    const std::string& ros_namespace,
+    //    const std::string& main_node,
+    //    rclcpp::Context::SharedPtr context,
+    //    const std::vector<std::string>& arguments,
+    //    const std::vector<rclcpp::Parameter>& initial_parameters,
+    //    bool use_global_arguments /*= true*/,
+    //    bool use_intra_process_comms /*= false*/,
+    //    bool start_parameter_services /*= true*/)
+    //    : Node(node_name, ros_namespace, context, arguments, initial_parameters,
+    //           use_global_arguments, use_intra_process_comms, start_parameter_services) {
 
 #ifndef NDEBUG
         rcutils_ret_t res = rcutils_logging_set_logger_level(get_name(), RCUTILS_LOG_SEVERITY_DEBUG);
@@ -105,7 +113,7 @@ namespace stereolabs {
             topicPrefix += "/";
         }
 
-        mMainNode = main_node;
+        mMainNode = "zed";
 
         topicPrefix += mMainNode;
         topicPrefix += "/";

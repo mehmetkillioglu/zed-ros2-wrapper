@@ -5,7 +5,7 @@ import sys
 
 import launch
 
-from ament_index_python.packages import get_package_share_directory
+from ament_index_python.packages import get_package_share_directory, get_resource
 
 from launch import LaunchDescription
 from launch.actions import EmitEvent
@@ -72,7 +72,7 @@ def generate_launch_description():
     # Make the ZED node take the 'configure' transition
     zed_configure_trans_event = EmitEvent(
         event=ChangeState(
-            lifecycle_node_matcher = launch.events.process.matches_action(zed_node),
+            lifecycle_node_matcher = launch.events.matches_action(zed_node),
             transition_id = lifecycle_msgs.msg.Transition.TRANSITION_CONFIGURE,
         )
     )
@@ -80,7 +80,7 @@ def generate_launch_description():
     # Make the ZED node take the 'activate' transition
     zed_activate_trans_event = EmitEvent(
         event = ChangeState(
-            lifecycle_node_matcher = launch.events.process.matches_action(zed_node),
+            lifecycle_node_matcher = launch.events.matches_action(zed_node),
             transition_id = lifecycle_msgs.msg.Transition.TRANSITION_ACTIVATE,
          )
     )

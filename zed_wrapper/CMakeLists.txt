@@ -38,7 +38,7 @@ endif()
 
 find_package(CUDA)
 checkPackage("CUDA" "CUDA not found, install it from:\n https://developer.nvidia.com/cuda-downloads")
-
+find_package(rclcpp_components REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(ament_index_cpp REQUIRED)
 find_package(class_loader REQUIRED)
@@ -150,7 +150,7 @@ ament_target_dependencies(zed_component
   geometry_msgs
   stereolabs_zed_interfaces
 )
-rclcpp_register_node_plugins(zed_component "stereolabs::ZedCameraComponent")
+rclcpp_components_register_nodes(zed_component "stereolabs::ZedCameraComponent")
 set(node_plugins "${node_plugins}stereolabs::ZedCameraComponent;$<TARGET_FILE:zed_component>\n")
 
 add_library(zed_it_broadcaster SHARED ${TOOLS_SRC} ${ZED_IT_SRC})
@@ -164,7 +164,7 @@ ament_target_dependencies(zed_it_broadcaster
   sensor_msgs
   image_transport
 )
-rclcpp_register_node_plugins(zed_it_broadcaster "stereolabs::ZedCameraIT")
+rclcpp_components_register_nodes(zed_it_broadcaster "stereolabs::ZedCameraIT")
 set(node_plugins "${node_plugins}stereolabs::ZedCameraIT;$<TARGET_FILE:zed_it_broadcaster>\n")
 
 add_library(zed_tf_broadcaster SHARED ${TOOLS_SRC} ${ZED_TF_SRC})
@@ -182,7 +182,7 @@ ament_target_dependencies(zed_tf_broadcaster
   tf2
   tf2_ros
 )
-rclcpp_register_node_plugins(zed_tf_broadcaster "stereolabs::ZedCameraTF")
+rclcpp_components_register_nodes(zed_tf_broadcaster "stereolabs::ZedCameraTF")
 set(node_plugins "${node_plugins}stereolabs::ZedCameraTF;$<TARGET_FILE:zed_tf_broadcaster>\n")
 
 add_executable(zed_wrapper_node ${NODE_SRC})

@@ -41,9 +41,9 @@ namespace stereolabs {
 #define RAD2DEG 57.295777937
 #endif
 
-    ZedCameraComponent::ZedCameraComponent(const std::string& node_name, const std::string& ros_namespace,
-                                           bool intra_process_comms)
-        : rclcpp_lifecycle::LifecycleNode(node_name, ros_namespace, intra_process_comms) {
+    ZedCameraComponent::ZedCameraComponent(const std::string& node_name, 
+                                    const std::string& ros_namespace)
+        : rclcpp_lifecycle::LifecycleNode(node_name, ros_namespace) {
 
 #ifndef NDEBUG
         std::string logger = ros_namespace.empty() ? "" : ros_namespace + ".";
@@ -68,17 +68,21 @@ namespace stereolabs {
         RCLCPP_INFO(get_logger(), "Waiting for `CONFIGURE` request...");
     }
 
-    ZedCameraComponent:: ZedCameraComponent(
-        const std::string& node_name,
-        const std::string& ros_namespace,
-        rclcpp::Context::SharedPtr context,
-        const std::vector<std::string>& arguments,
-        const std::vector<rclcpp::Parameter>& initial_parameters,
-        bool use_global_arguments /*= true*/,
-        bool use_intra_process_comms /*= false*/,
-        bool start_parameter_services /*= true*/)
-        : rclcpp_lifecycle::LifecycleNode(node_name, ros_namespace, context, arguments, initial_parameters,
-                                          use_global_arguments, use_intra_process_comms, start_parameter_services) {
+    ZedCameraComponent::ZedCameraComponent(const std::string& node_name /*= "zed_it_broadcaster"*/,
+                                       const std::string& ros_namespace,
+                                       const rclcpp::NodeOptions & options) /*= "zed"*/
+    : rclcpp_lifecycle::LifecycleNode(node_name, ros_namespace, options) {
+    //ZedCameraComponent:: ZedCameraComponent(
+    //        const std::string& node_name,
+    //        const std::string& ros_namespace,
+    //        rclcpp::Context::SharedPtr context,
+    //        const std::vector<std::string>& arguments,
+    //        const std::vector<rclcpp::Parameter>& initial_parameters,
+    //        bool use_global_arguments /*= true*/,
+    //        bool use_intra_process_comms /*= false*/,
+    //        bool start_parameter_services /*= true*/)
+    //        : rclcpp_lifecycle::LifecycleNode(node_name, ros_namespace, context, arguments, initial_parameters,
+    //                                      use_global_arguments, use_intra_process_comms, start_parameter_services) {
 #ifndef NDEBUG
         std::string logger = ros_namespace.empty() ? "" : ros_namespace + ".";
         logger += node_name;

@@ -111,8 +111,7 @@ namespace stereolabs {
          */
         ZED_PUBLIC
         explicit ZedCameraComponent(const std::string& node_name = "zed_node",
-                                    const std::string& ros_namespace = "zed",
-                                    bool intra_process_comms = false);
+                                    const std::string& ros_namespace = "zed");
 
         /// Create a ZedCameraComponent/lifecycle node based on the node name and a rclcpp::Context.
         /**
@@ -132,12 +131,17 @@ namespace stereolabs {
         explicit ZedCameraComponent(
             const std::string& node_name,
             const std::string& ros_namespace,
-            rclcpp::Context::SharedPtr context,
-            const std::vector<std::string>& arguments,
-            const std::vector<rclcpp::Parameter>& initial_parameters,
-            bool use_global_arguments = true,
-            bool use_intra_process_comms = false,
-            bool start_parameter_services = true);
+            const rclcpp::NodeOptions & options
+        );
+        //explicit ZedCameraComponent(
+        //    const std::string& node_name,
+        //    const std::string& ros_namespace,
+        //    rclcpp::Context::SharedPtr context,
+        //    const std::vector<std::string>& arguments,
+        //    const std::vector<rclcpp::Parameter>& initial_parameters,
+        //    bool use_global_arguments = true,
+        //    bool use_intra_process_comms = false,
+        //    bool start_parameter_services = true);
 
         virtual ~ZedCameraComponent();
 

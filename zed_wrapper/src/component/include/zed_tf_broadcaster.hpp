@@ -42,10 +42,13 @@ namespace stereolabs {
          * pipeline to pass messages between nodes in the same process using shared memory.
          */
         ZED_PUBLIC
-        explicit ZedTfBroadcaster(const std::string& node_name = "zed_tf_broadcaster",
+
+        explicit ZedTfBroadcaster(const std::string & node_name = "zed_tf_broadcaster",
+                                  const std::string& ros_namespace = "zed");
+        /*explicit ZedTfBroadcaster(const std::string& node_name = "zed_tf_broadcaster",
                                   const std::string& ros_namespace = "zed",
                                   const std::string& main_node = "zed_node",
-                                  bool intra_process_comms = true);
+                                  bool intra_process_comms = true);*/
 
         /// Create a node based on the node name and a rclcpp::Context.
         /**
@@ -64,13 +67,16 @@ namespace stereolabs {
         ZED_PUBLIC
         explicit ZedTfBroadcaster(const std::string& node_name,
                                   const std::string& ros_namespace,
+                                  const rclcpp::NodeOptions & options);
+        /*explicit ZedTfBroadcaster(const std::string& node_name,
+                                  const std::string& ros_namespace,
                                   const std::string& main_node,
                                   rclcpp::Context::SharedPtr context,
                                   const std::vector<std::string>& arguments,
                                   const std::vector<rclcpp::Parameter>& initial_parameters,
                                   bool use_global_arguments = true,
                                   bool use_intra_process_comms = false,
-                                  bool start_parameter_services = true);
+                                  bool start_parameter_services = true);*/
 
       protected:
         void odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg);

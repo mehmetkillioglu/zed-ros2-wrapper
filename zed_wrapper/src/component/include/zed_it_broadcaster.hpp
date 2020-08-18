@@ -22,7 +22,7 @@
 // /////////////////////////////////////////////////////////////////////////
 
 #include "visibility_control.h"
-
+#include "rclcpp/node_options.hpp"
 #include <rclcpp/node.hpp>
 #include <image_transport/image_transport.h>
 
@@ -41,10 +41,12 @@ namespace stereolabs {
          * pipeline to pass messages between nodes in the same process using shared memory.
          */
         ZED_PUBLIC
-        explicit ZedItBroadcaster(const std::string& node_name = "zed_node_it",
+        explicit ZedItBroadcaster(const std::string & node_name = "zed_node_it",
+                                  const std::string& ros_namespace = "zed");
+        /*explicit ZedItBroadcaster(const std::string& node_name = "zed_node_it",
                                   const std::string& ros_namespace = "zed",
                                   const std::string& main_node = "zed_node",
-                                  bool intra_process_comms = true);
+                                  bool intra_process_comms = true);*/
 
         /// Create a node based on the node name and a rclcpp::Context.
         /**
@@ -63,6 +65,9 @@ namespace stereolabs {
         ZED_PUBLIC
         explicit ZedItBroadcaster(const std::string& node_name,
                                   const std::string& ros_namespace,
+                                  const rclcpp::NodeOptions & options);
+        /*explicit ZedItBroadcaster(const std::string& node_name,
+                                  const std::string& ros_namespace,
                                   const std::string& main_node,
                                   rclcpp::Context::SharedPtr context,
                                   const std::vector<std::string>& arguments,
@@ -70,7 +75,7 @@ namespace stereolabs {
                                   bool use_global_arguments = true,
                                   bool use_intra_process_comms = false,
                                   bool start_parameter_services = true);
-
+*/
       protected:
         void rgbCallback(const sensor_msgs::msg::Image::SharedPtr msg);
         void rgbInfoCallback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
