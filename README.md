@@ -18,7 +18,7 @@ This package lets you use the ZED stereo camera with ROS2. It provides access to
 ### Prerequisites
 
 - Ubuntu 16.04 or Ubuntu 18.04 (*support for Windows 10 will be provided soon*)
-- [ZED SDK](https://www.stereolabs.com/developers/release/latest/) v2.6 or later
+- [ZED SDK](https://www.stereolabs.com/developers/release/latest/) >=2.6 & <3.0
 - [CUDA](https://developer.nvidia.com/cuda-downloads) dependency
 - ROS2 Dashing: 
   - Ubuntu 16.04 [[source](https://index.ros.org/doc/ros2/Installation/Linux-Development-Setup/)] 
