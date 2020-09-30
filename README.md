@@ -1,5 +1,7 @@
 ![](./images/Picto+STEREOLABS_Black.jpg)
 
+# This is just a custom version for Dashing for ZED Camera for my use-case. Tests were not done throughly, some functionalities might not work. Use it at your own risk. I am not affiliated with Stereolabs and I do not accept any responsibility for the problems might occur.
+
 # Stereolabs ZED Camera - ROS2 Integration - Beta Version
 
 This package lets you use the ZED stereo camera with ROS2. It provides access to the following data:
